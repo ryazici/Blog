@@ -9,14 +9,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yazici.entity.Post;
-import com.yazici.entity.Room;
 import com.yazici.repository.PostRepository;
 
 @Controller
@@ -45,26 +42,14 @@ public class PostController {
 	
 	
 	@GetMapping("/post/{postId}")
-	public ModelAndView getPost(@PathVariable("postId") String postId,@ModelAttribute Room formBean) {
+	public ModelAndView getPost(@PathVariable("postId") String postId) {
 	
 		Post post=postRepository.findById(Long.parseLong(postId)).get();
-		
+	
 		ModelAndView mav=new ModelAndView("post-detail");
 		mav.addObject("post", post );
 		
 		return mav;
 	}
 	
-	
-	@PostMapping("/post")
-	public ModelAndView addPost(@ModelAttribute Room formBean) {
-		
-		Object obj=new Object();
-		
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("room", obj);
-		mav.setViewName("index");
-		
-		return mav;
-	}
 }

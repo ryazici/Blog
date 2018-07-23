@@ -16,24 +16,18 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		return bCryptPasswordEncoder;
 	}
-	
+
 	@Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler(
-                "/css/**",
-                "/js/**")
-                .addResourceLocations(
-                        "classpath:/static/css/",
-                        "classpath:/static/js/");
-    }
-	
-	
-	
-	
-	  @Bean
-	    ServletRegistrationBean h2servletRegistration(){
-	        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
-	        registrationBean.addUrlMappings("/console/*");
-	        return registrationBean;
-	    }
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/css/**", "/js/**").addResourceLocations("classpath:/static/css/",
+				"classpath:/static/js/");
+	}
+
+	@Bean
+	ServletRegistrationBean<WebServlet> h2servletRegistration() {
+		ServletRegistrationBean<WebServlet> registrationBean = new ServletRegistrationBean<WebServlet>(
+				new WebServlet());
+		registrationBean.addUrlMappings("/console/*");
+		return registrationBean;
+	}
 }

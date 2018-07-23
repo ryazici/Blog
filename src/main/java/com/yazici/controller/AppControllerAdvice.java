@@ -13,7 +13,7 @@ public class AppControllerAdvice {
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		SimpleDateFormat format=new SimpleDateFormat("dd.mm.yyyy");
+		SimpleDateFormat format=new SimpleDateFormat("dd.MM.yyyy");
 		format.setLenient(false);
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(format,false));
 
