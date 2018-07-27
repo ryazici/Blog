@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -20,9 +21,18 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class AppSecurityConfig  extends WebSecurityConfigurerAdapter{
 
-	@Autowired
 	private UserDetailService userDetailService;
 	
+	private AuthenticationSuccessHandler authenticationSuccessHandler;
+	
+	@Autowired
+	public AppSecurityConfig(UserDetailService userDetailService,
+			AuthenticationSuccessHandler authenticationSuccessHandler) {
+		super();
+		this.userDetailService = userDetailService;
+		this.authenticationSuccessHandler = authenticationSuccessHandler;
+	}
+
 	@Bean
 	public DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider =new DaoAuthenticationProvider();
@@ -60,6 +70,7 @@ public class AppSecurityConfig  extends WebSecurityConfigurerAdapter{
 		.anyRequest().authenticated()
 		.and()
 		.formLogin().loginPage("/login").permitAll()
+		 .successHandler(authenticationSuccessHandler)
 		.and()
 		.logout().invalidateHttpSession(true).clearAuthentication(true)
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

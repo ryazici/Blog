@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -28,7 +29,8 @@ public class Post {
 
 	@Id
 	@Column(name="POST_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="postSeqGen")
+	@SequenceGenerator(name="postSeqGen",sequenceName="post_sequence")
 	private long id;
 	
 	@Column(name="TITLE", unique=true)

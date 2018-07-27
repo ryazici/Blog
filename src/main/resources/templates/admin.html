@@ -21,7 +21,7 @@
 <body>
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
 		<div class="container">
-			<a href="index.html" th:href="@{/admin}" class="navbar-brand">Blogen</a>
+			<a href="index.html" th:href="@{/admin}" class="navbar-brand">Blog</a>
 			<button class="navbar-toggler" data-toggle="collapse"
 				data-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
 				<ul class="navbar-nav">
 					<li class="nav-item px-2"><a th:href="@{/admin}"
 						class="nav-link active">Dashboard</a></li>
-					<li class="nav-item px-2"><a th:href="@{/admin}"
+					<li class="nav-item px-2"><a th:href="@{/index}"
 						class="nav-link">Posts</a></li>
 					<li class="nav-item px-2"><a href="categories.html" th:href="@{/categories}"
 						class="nav-link">Categories</a></li>
@@ -222,7 +222,7 @@
 			<div class="row">
 				<div class="col">
 					<p class="lead text-center">
-						Copyright &copy; <span id="year"></span> Blogen
+						Copyright &copy; <span id="year"></span> Blog
 					</p>
 				</div>
 			</div>
@@ -243,20 +243,19 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form th:action="@{/addpost}" method="post" >
+					<form th:action="@{/addpost}" method="post" th:object="${post}" >
 						<div class="form-group">
-							<label for="title">Title</label> <input type="text"
-								class="form-control">
+							<label for="title">Title</label> <input type="text" th:field="*{title}" class="form-control">
+						<!--  	<input type="text" th:field="*{category.categoryId}" value="1"/>-->
 						</div>
 						<div class="form-group">
 							<label for="category">Category</label>
-							 <select
+							
+							 <select th:field="*{category.categoryId}"
 								class="form-control">
-								<option value="">Web Development</option>
-								<option value="">Tech Gadgets</option>
-								<option value="">Business</option>
-								<option value="">Health & Wellness</option>
-							</select>
+								 <option th:each="category : ${categories}" th:value="${category.categoryId}" th:text="${category.name}">Tech</option>
+							 </select>
+							
 						</div>
 						<div class="form-group">
 							<label for="image">Upload Image</label>
@@ -268,7 +267,10 @@
 						</div>
 						<div class="form-group">
 							<label for="body">Body</label>
-							<textarea name="editor1" class="form-control"></textarea>
+							<textarea name="editor1" class="form-control" th:field="*{content}" ></textarea>
+						</div>
+						<div>
+							<input type="submit" value="Add Post">
 						</div>
 					</form>
 				</div>

@@ -27,8 +27,8 @@
 				data-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav" sec:authorize="isAuthenticated()" >
+			<div class="collapse navbar-collapse" id="navbarCollapse" >
+				<ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')" >
 					<li class="nav-item px-2"><a href="index.html"
 						class="nav-link">Dashboard</a></li>
 					<li class="nav-item px-2"><a href="posts.html"
@@ -122,14 +122,13 @@
 							<tbody>
 								<tr th:each="post : ${page.content}">
 									<td th:text="${post.id}">1</td>
-									<td th:text="${post.title}">>Post One</td>
-									<td th:text="${post.title}">>Web Development</td>
-									<td th:text="${post.dateCreated}"> May 10 22018</td>
+									<td th:text="${post.title }">>Post One</td>
+									<td th:text="${post.category.categoryId}">>Web Development</td>
+									<td  th:text="${#dates.format(post.dateCreated, 'dd.MM.yyyy HH:mm')}"    > May 10 22018</td>
 									<td><a th:href="@{'/post/'+ ${post.id}}" href="details.html" class="btn btn-secondary">
 											<i class="fas fa-angle-double-right"></i> Details
 									</a></td>
 								</tr>
-					
 							</tbody>
 						</table>
 				

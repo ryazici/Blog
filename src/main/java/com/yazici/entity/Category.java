@@ -13,10 +13,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name="CATEGORY")
 @Data
+@RequiredArgsConstructor
 public class Category {
 	
 	@Id
