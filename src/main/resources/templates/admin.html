@@ -15,7 +15,7 @@
 	integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
-<title>Bootstrap Theme</title>
+<title>Blog</title>
 </head>
 
 <body>
@@ -123,57 +123,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>1</td>
-									<td>Post One</td>
-									<td>Web Development</td>
-									<td>May 10 2018</td>
-									<td><a href="details.html" class="btn btn-secondary">
-											<i class="fas fa-angle-double-right"></i> Details
-									</a></td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>Post Two</td>
-									<td>Tech Gadgets</td>
-									<td>May 11 2018</td>
-									<td><a href="details.html" class="btn btn-secondary">
-											<i class="fas fa-angle-double-right"></i> Details
-									</a></td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>Post Three</td>
-									<td>Web Development</td>
-									<td>May 13 2018</td>
-									<td><a href="details.html" class="btn btn-secondary">
-											<i class="fas fa-angle-double-right"></i> Details
-									</a></td>
-								</tr>
-								<tr>
-									<td>4</td>
-									<td>Post Four</td>
-									<td>Business</td>
-									<td>May 15 2018</td>
-									<td><a href="details.html" class="btn btn-secondary">
-											<i class="fas fa-angle-double-right"></i> Details
-									</a></td>
-								</tr>
-								<tr>
-									<td>5</td>
-									<td>Post Five</td>
-									<td>Web Development</td>
-									<td>May 17 2018</td>
-									<td><a href="details.html" class="btn btn-secondary">
-											<i class="fas fa-angle-double-right"></i> Details
-									</a></td>
-								</tr>
-								<tr>
-									<td>6</td>
-									<td>Post Six</td>
-									<td>Health & Wellness</td>
-									<td>May 20 2018</td>
-									<td><a href="details.html" class="btn btn-secondary">
+								<tr th:each="post : ${page.content}">
+									<td th:text="${post.id}">1</td>
+									<td th:text="${post.title }">>Post One</td>
+									<td th:text="${post.category.name}">>Web Development</td>
+									<td  th:text="${#dates.format(post.dateCreated, 'dd.MM.yyyy HH:mm')}"    > May 10 22018</td>
+									<td><a th:href="@{'/post/'+ ${post.id}}" href="details.html" class="btn btn-secondary">
 											<i class="fas fa-angle-double-right"></i> Details
 									</a></td>
 								</tr>
@@ -186,9 +141,9 @@
 						<div class="card-body">
 							<h3>Posts</h3>
 							<h4 class="display-4">
-								<i class="fas fa-pencil-alt"></i> 6
+								<i class="fas fa-pencil-alt"></i> <span th:text="${postCount}">4</span>
 							</h4>
-							<a href="posts.html" class="btn btn-outline-light btn-sm">View</a>
+							<a href="posts.html" th:href="@{/}" class="btn btn-outline-light btn-sm">View</a>
 						</div>
 					</div>
 
@@ -196,9 +151,9 @@
 						<div class="card-body">
 							<h3>Categories</h3>
 							<h4 class="display-4">
-								<i class="fas fa-folder"></i> 4
+								<i class="fas fa-folder"></i> <span th:text="${categoryCount}">4</span>
 							</h4>
-							<a href="categories.html" class="btn btn-outline-light btn-sm">View</a>
+							<a href="categories.html" th:href="@{/categories}" class="btn btn-outline-light btn-sm">View</a>
 						</div>
 					</div>
 
@@ -206,9 +161,9 @@
 						<div class="card-body">
 							<h3>Users</h3>
 							<h4 class="display-4">
-								<i class="fas fa-users"></i> 4
+								<i class="fas fa-users"></i><span th:text="${userCount}">4</span> 
 							</h4>
-							<a href="users.html" class="btn btn-outline-light btn-sm">View</a>
+							<a href="users.html" th:href="@{/users}" class="btn btn-outline-light btn-sm">View</a>
 						</div>
 					</div>
 				</div>

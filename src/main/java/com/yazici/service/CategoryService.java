@@ -17,5 +17,9 @@ public class CategoryService {
 		
 		return categoryRepository.findAll();
 	}
+    public long getCategoryCount(){
+		
+		return categoryRepository.count();
+	}
 	
 }

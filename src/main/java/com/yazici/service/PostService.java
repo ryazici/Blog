@@ -18,11 +18,14 @@ public class PostService {
 	
 	public List<Post> getPageItems(){
 		
-		List<Post> items=new ArrayList<>();
+		 List<Post> items=new ArrayList<>();
 		
 		 postRepository.findAll().forEach(items::add);
 		 return items;
 	}
 	
+	public long getCount() {
+		return postRepository.count();
+	}
 	
 }

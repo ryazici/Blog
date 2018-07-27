@@ -53,10 +53,12 @@ public class PostController {
 	public ModelAndView getPost(@PathVariable("postId") String postId) {
 	
 		Post post=postRepository.findById(Long.parseLong(postId)).get();
-		
+		String name=post.getCategory().getName().toString();
 		
 		ModelAndView mav=new ModelAndView("post-detail");
+		
 		mav.addObject("post", post );
+		mav.addObject("categoryname",name);
 	
 		
 		return mav;
