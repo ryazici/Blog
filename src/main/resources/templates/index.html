@@ -120,7 +120,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="post : ${page.content}">
+								<tr th:each="post : ${page}">
 									<td th:text="${post.id}">1</td>
 									<td th:text="${post.title }">>Post One</td>
 									<td th:text="${post.category.name}">>Web Development</td>

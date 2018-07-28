@@ -9,11 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Entity
@@ -24,7 +24,8 @@ public class Category {
 	
 	@Id
 	@Column(name="CATEGORY_ID")
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="catSeqGen")
+	@SequenceGenerator(name="catSeqGen",sequenceName="category_sequence")
 	private long categoryId;
 
 	@Column(name="NAME")

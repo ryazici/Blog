@@ -16,6 +16,13 @@ public class PostService {
 	private PostRepository postRepository;
 	
 	
+	public Post addPost(Post post) {
+		
+		Post postNew = postRepository.save(post);
+		return postNew;
+	}
+	
+	
 	public List<Post> getPageItems(){
 		
 		 List<Post> items=new ArrayList<>();

@@ -13,10 +13,19 @@ public class CategoryService {
 	private CategoryRepository categoryRepository;
 	
 	
+	public Category addCategory(Category category) {
+		
+		Category newCategory = categoryRepository.save(category);
+		return newCategory;
+	}
+	
+	
+	
 	public Iterable<Category> getCategories(){
 		
 		return categoryRepository.findAll();
 	}
+	
     public long getCategoryCount(){
 		
 		return categoryRepository.count();
