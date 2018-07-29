@@ -3,6 +3,7 @@ package com.yazici.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +42,7 @@ public class Post {
 	@Column(name="CONTENT")
 	private String content;
 	
+
 	@Column(name="DATE_CREATED")
 	private Date dateCreated;
 	
@@ -52,5 +56,10 @@ public class Post {
 	        cascade = CascadeType.ALL, 
 	        orphanRemoval = true)
 	private List<Comment> comments;
+	
+	{
+		setDateCreated(new Date());
+	}
+	
 	
 }

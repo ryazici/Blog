@@ -33,7 +33,9 @@ public class UserDetailService implements UserDetailsService{
 		return new AppUser(user,authGroups);
 	}
 	
+	public List<User> getAllUsers(){
+		
+		return userRepository.findAllUsersNative();
+	}
 
-
-	
 }

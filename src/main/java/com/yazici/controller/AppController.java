@@ -25,19 +25,6 @@ public class AppController {
 	public String login() {
 		return "login";
 	}
-	
-	@GetMapping("/categories")
-	public String getCategories() {
-		
-		return "categories";
-	}
-	
-	@GetMapping("/users")
-	public String getUsers() {
-		
-		return "users";
-	}
-	
 	@GetMapping("/details")
 	public String getDetails() {
 		
@@ -59,7 +46,7 @@ public class AppController {
 		return "login";
 	}
 	
-	@GetMapping({"/"})
+	@GetMapping({"/","/index","/post"})
 	  public String index(@RequestParam(value="page",required=false) Optional<Integer> pagePar,@RequestParam(value="size",required=false) Optional<Integer> sizePar, Model model){
 		
 		int page=pagePar.orElse(0);

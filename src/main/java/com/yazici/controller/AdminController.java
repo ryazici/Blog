@@ -43,15 +43,15 @@ public class AdminController {
 		
 		Pageable pageable=PageRequest.of(page, size);
 		
-		  Page<Post> posts = postRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
+		Page<Post> posts = postRepository.findAll(PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()));
 		  
 		  
 		  
+		model.addAttribute("post", new Post());
 	    model.addAttribute("page", posts);
 	    model.addAttribute("postCount",postService.getCount() );
 	    model.addAttribute("categoryCount",categoryService.getCategoryCount());
 	    model.addAttribute("userCount",userRepository.count());
-		model.addAttribute("post", new Post());
 		model.addAttribute("categories",categoryService.getCategories());
 		
 		return "admin";
