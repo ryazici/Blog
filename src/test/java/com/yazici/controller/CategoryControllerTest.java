@@ -37,7 +37,7 @@ public class CategoryControllerTest {
 	}
 	
 	@Test
-	public void testAddPost() throws Exception{
+	public void testAddCategory() throws Exception{
 
 		Category mockCategory=new Category();
 		mockCategory.setName("Test Category");
